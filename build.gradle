@@ -11,14 +11,13 @@ repositories {
     mavenCentral()
 }
 
-sourceSets {
-
-    test {
-        java {
-            srcDirs = ["test/java/Selenium/Tests"]  
-        }
+test {
+    filter {
+        //specific test method
+        includeTestsMatching "*.TestSelenium"
     }
 }
+
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'

@@ -1,5 +1,6 @@
-package Selenium;
+package Selenium.Tests;
 
+import Selenium.BaseSeleniumClass;
 import Selenium.Pages.PageTest;
 import org.junit.Assert;
 import org.junit.Test;
@@ -20,7 +21,7 @@ public class TestSelenium extends BaseSeleniumClass {
         searchButton.click();
         WebElement b92Link = wait.until(ExpectedConditions.visibilityOfElementLocated(pageTest.gettoptalId()));
         b92Link.click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(pageTest.gettoptalButtonId()));
+        //wait.until(ExpectedConditions.visibilityOfElementLocated(pageTest.gettoptalButtonId()));
         String URL = driver.getCurrentUrl();
         System.out.println(URL);
         Assert.assertEquals(URL, "https://www.b92.net/" );
