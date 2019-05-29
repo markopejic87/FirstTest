@@ -10,7 +10,7 @@ public class PageTest extends WebPage{
     protected String linkSelector ="#search_form_input_homepage";
     protected String searchButtonId="#search_button_homepage";
     protected String toptalId="#r1-0 > div > h2 > a.result__a";
-    protected String toptalButtonId="#content > section.vertical_landings_intro-wrapper > div > div.vertical_landings_intro-inner > div.vertical_landings_intro-actions > a:nth-child(1)";
+    protected String sideBarId="guide-button";
 
     public PageTest(WebDriverWait wait, WebDriver driver) {
         super(wait, driver);
@@ -27,8 +27,8 @@ public class PageTest extends WebPage{
         return By.cssSelector(toptalId);
     }
 
-    public By gettoptalButtonId() {
-        return By.cssSelector(toptalButtonId);
+    public By getsideBarIdButtonId() {
+        return By.id(sideBarId);
     }
 
 
