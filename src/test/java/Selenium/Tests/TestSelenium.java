@@ -16,14 +16,14 @@ public class TestSelenium extends BaseSeleniumClass {
     public void test2(){
         driver.get("https://duckduckgo.com");
         WebElement searchField = wait.until(ExpectedConditions.elementToBeClickable(pageTest.getLinkSelector()));
-        searchField.sendKeys("b92");
+        searchField.sendKeys("youtube");
         WebElement searchButton = wait.until(ExpectedConditions.elementToBeClickable(pageTest.getsearchButtonId()));
         searchButton.click();
-        WebElement b92Link = wait.until(ExpectedConditions.visibilityOfElementLocated(pageTest.gettoptalId()));
-        b92Link.click();
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(pageTest.gettoptalButtonId()));
+        WebElement firstLink = wait.until(ExpectedConditions.visibilityOfElementLocated(pageTest.gettoptalId()));
+        firstLink.click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(pageTest.getsideBarIdButtonId()));
         String URL = driver.getCurrentUrl();
         System.out.println(URL);
-        Assert.assertEquals(URL, "https://www.b92.net/" );
+        Assert.assertEquals(URL, "https://www.youtube.com/" );
     }
 }
