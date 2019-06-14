@@ -18,6 +18,7 @@ public class SearchProductTest extends BaseSeleniumClass {
 
         driver.get(testServerUrl);
         homePage.hoverAndClickTV();
+        homePage.clickOnScreenType();
         homePage.checkFilter(filter1);
         homePage.clickOnManufacturor();
         homePage.checkFilter(filter2);
