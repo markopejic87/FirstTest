@@ -41,7 +41,7 @@ public class LoginPage extends WebPage {
 
     public void clickOnLoginAndLogin(){
         clickOnLogin();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(loginConfirmationPage.getCheckoutWrapperId()));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(loginConfirmationPage.getMyAccountWrapperSelector()));
     }
 
     public By getLoginErrorTextSelector() {

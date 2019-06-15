@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ConfirmationPage extends WebPage {
 
-    protected String checkoutWrapperId ="checkout-progress-wrapper";
+    protected String myAccountWrapperSelector ="#mm-0 > div > div.main-container.col1-layout > div > div > div > div.my-account";
     protected String finishShoppingTextSelector = "#opc-login-content > div.col1-set > div > h3";
 
 
@@ -17,8 +17,8 @@ public class ConfirmationPage extends WebPage {
         super(wait, driver);
     }
 
-    public By getCheckoutWrapperId() {
-        return By.id(checkoutWrapperId);
+    public By getMyAccountWrapperSelector() {
+        return By.cssSelector(myAccountWrapperSelector);
     }
 
     public By getFinishShoppingTextSelector() {
