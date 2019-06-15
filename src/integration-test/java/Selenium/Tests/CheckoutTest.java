@@ -18,5 +18,6 @@ public class CheckoutTest extends BaseSeleniumClass {
         wait.until(ExpectedConditions.visibilityOfElementLocated(checkoutPage.getCartTableId()));
         checkoutPage.clickOnCheckoutButton();
         wait.until(ExpectedConditions.visibilityOfElementLocated(confirmationPage.getFinishShoppingTextSelector()));
-        Assert.assertEquals("Završite kupovinu kao Gost ili se Registrujte",confirmationPage.getFinishShoppingText());    }
+        Assert.assertTrue(confirmationPage.getFinishShoppingText().contains("kupovinu kao Gost ili se"));
+        }
 }
