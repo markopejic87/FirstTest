@@ -25,6 +25,7 @@ public class CheckoutPage extends WebPage{
     public By getRemoveNthElement(Integer i) {
         return By.cssSelector(removeNthElementFromCart.replace("EL", i.toString()));    }
 
+    //removes the n-th product from the cart list
     public void removeNthproduct(Integer i){
         WebElement c = wait.until(ExpectedConditions.visibilityOfElementLocated(getRemoveNthElement(i)));
         c.click();
@@ -35,6 +36,7 @@ public class CheckoutPage extends WebPage{
         return By.cssSelector(emptyCartMessageSelector);
     }
 
+    //Returns the text message displayed on the page when all products are removed from cart
     public String getEmptyCartMessage(){
         WebElement e = wait.until(ExpectedConditions.visibilityOfElementLocated(getEmptyCartMessageSelector()));
         return e.getText();

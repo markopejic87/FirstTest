@@ -15,6 +15,7 @@ public class AddProductTest extends BaseSeleniumClass {
           homePage.clickOnNthProduct(1);
           wait.until(ExpectedConditions.visibilityOfElementLocated(productPage.getProductViewSelector()));
           productPage.clickAddToCart();
+          //assert that we moved to checkout page
           Assert.assertEquals(productPage.getCheckoutURL(),driver.getCurrentUrl() );
           //if the product is added to the cart cart table element exists
           wait.until(ExpectedConditions.visibilityOfElementLocated(checkoutPage.getCartTableId()));

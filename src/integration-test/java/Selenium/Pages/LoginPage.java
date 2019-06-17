@@ -14,9 +14,8 @@ public class LoginPage extends WebPage {
     protected String loginButtonId ="send2";
     ConfirmationPage loginConfirmationPage= new ConfirmationPage(wait,driver);
     protected String loginErrorTextSelector="#mm-0 > div.wrapper > div > div.main-container.col1-layout > div > div > div > div > ul > li > ul > li > span";
-    protected String shortUsernameTextId="advice-required-entry-email";
-
     protected String loginUrlPath= "/customer/account/login/";
+    protected String validationRequiredTextId="advice-required-entry-email";
 
     public LoginPage(WebDriverWait wait, WebDriver driver) {
         super(wait, driver);
@@ -39,6 +38,7 @@ public class LoginPage extends WebPage {
         loginButton.click();
     }
 
+    //combined action of clicking on login andverifying thah the user is logged in
     public void clickOnLoginAndLogin(){
         clickOnLogin();
         wait.until(ExpectedConditions.visibilityOfElementLocated(loginConfirmationPage.getMyAccountWrapperSelector()));
@@ -48,13 +48,22 @@ public class LoginPage extends WebPage {
         return By.cssSelector(loginErrorTextSelector);
     }
 
-    public By getShortUsernameTextId() {
-        return By.id(shortUsernameTextId);
-    }
-
     public String getLoginUrlPath() {
         return loginUrlPath;
     }
 
+    //enter username in a given form
+    public void enterUsername(String s){
+        WebElement usernameForm = wait.until(ExpectedConditions.visibilityOfElementLocated(getUsernameId()));
+        usernameForm.sendKeys(s);
+    }
+    //enter password in a given form
+    public void enterPassword(String s){
+        WebElement passwordForm = wait.until(ExpectedConditions.visibilityOfElementLocated(getPasswordId()));
+        passwordForm.sendKeys(s);
+    }
 
+    public By getValidationRequiredTextId() {
+        return By.id(validationRequiredTextId);
+    }
 }

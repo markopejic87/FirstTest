@@ -11,8 +11,9 @@ import org.junit.BeforeClass;
  */
 public class BaseApi
 {
-    protected static final String BASE_URI = "https://bclc-canucks2.betware.com/";
-    protected static final String BASE_PATH = "/lma/rest/v1/";
+    protected static final String BASE_URI = "https://cle.api.here.com";
+    protected static final String BASE_PATH = "/2/layers";
+    protected RequestSpecBuilders requestSpecBuilders = new RequestSpecBuilders();
 
 
     @BeforeClass

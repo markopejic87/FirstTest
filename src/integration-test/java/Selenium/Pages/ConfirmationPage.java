@@ -25,6 +25,7 @@ public class ConfirmationPage extends WebPage {
         return By.cssSelector(finishShoppingTextSelector);
     }
 
+    //gets the text that is displayed when you confirm the shopping
     public String getFinishShoppingText(){
         WebElement e = wait.until(ExpectedConditions.visibilityOfElementLocated(getFinishShoppingTextSelector()));
         return e.getText();

@@ -19,13 +19,12 @@ public class SearchProductTest extends BaseSeleniumClass {
         driver.get(testServerUrl);
         homePage.hoverAndClickTV();
         homePage.clickOnScreenType();
-        homePage.checkFilter(filter1);
-        homePage.clickOnManufacturor();
-        homePage.checkFilter(filter2);
+        homePage.checkFilterCheckbox(filter1);
+        homePage.clickOnManufacturer();
+        homePage.checkFilterCheckbox(filter2);
         homePage.clickOnScreenSize();
-        homePage.checkFilter(filter3);
-        WebElement productsList = driver.findElement(By.id("products-list"));
-        List<WebElement> products = productsList.findElements(By.tagName("h2"));
+        homePage.checkFilterCheckbox(filter3);
+        List<WebElement> products = homePage.getProductList();
         for (int j = 0; j < products.size(); j++){
             Assert.assertTrue(products.get(j).getText().toLowerCase().contains(filter1.toLowerCase()));
             Assert.assertTrue(products.get(j).getText().toLowerCase().contains(filter2.toLowerCase()));
