@@ -19,7 +19,7 @@ public class DeleteLocationTest extends BaseApi {
 
         given()
                 .spec(uploadReqSpec)
-                .when().post("/upload.json")
+                .when().post(UPLOAD_PATH)
                 .then().statusCode(201).log().all();
 
         RequestSpecification deleteReqSpec = requestSpecBuilders
@@ -28,7 +28,7 @@ public class DeleteLocationTest extends BaseApi {
 
         given()
                 .spec(deleteReqSpec).log().all()
-                .when().get("/delete.json")
+                .when().get(DELETE_PATH)
                 .then().statusCode(200).log().all();
 
     }
@@ -41,7 +41,7 @@ public class DeleteLocationTest extends BaseApi {
                 .deleteLocationSpecBuilder("MYLAYER1")
                 .build();
         given().spec(deleteReqSpec).log().all().queryParam("layer_ids","MYLAYER1").
-                when().delete("/delete.json").
+                when().delete(DELETE_PATH).
                 then().statusCode(405).log().all();
 
     }

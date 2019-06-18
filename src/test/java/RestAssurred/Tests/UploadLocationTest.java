@@ -26,7 +26,7 @@ public class UploadLocationTest extends BaseApi
         given()
                 .spec(reqSpec)
                 .when()
-                .post("/upload.json")
+                .post(UPLOAD_PATH)
                 .then()
                 .statusCode(201).log().all();
     }
@@ -43,7 +43,7 @@ public class UploadLocationTest extends BaseApi
         given()
                 .spec(reqSpec)
                 .when()
-                .post("/upload.json")
+                .post(UPLOAD_PATH)
                 .then()
                 .statusCode(400).log().all();
     }
@@ -57,7 +57,7 @@ public class UploadLocationTest extends BaseApi
                 .queryParam("app_id","VmznfFZdwjN4j0Gzke0F")
                 .queryParam("app_code","incorrect")
                 .multiPart("zipfile", new File("my_layer_content.zip"))
-                .when().post("/upload.json")
+                .when().post(UPLOAD_PATH)
                 .then().statusCode(401).log().all();
     }
 

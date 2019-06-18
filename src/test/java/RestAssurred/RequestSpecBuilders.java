@@ -31,4 +31,15 @@ public class RequestSpecBuilders {
     }
 
 
+    public RequestSpecBuilder modifyLocationSpecBuilder(String layerId, String layerContentFilePath, String action){
+        RequestSpecBuilder reqSpec = commonAuthorizationSpecBuilder()
+                .addQueryParam("layer_id",layerId)
+                .addQueryParam("action", action)
+                .setContentType("multipart/form-data")
+                .addMultiPart("zipfile", new File(layerContentFilePath));
+
+
+        return reqSpec;
+    }
+
 }
