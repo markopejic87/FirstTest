@@ -17,6 +17,11 @@ sourceSets {
         java.srcDir file('src/integration-test/java')
         resources.srcDir file('src/integration-test/resources')
     }
+
+    restTest {
+        java.srcDir file('src/rest-test/java')
+        resources.srcDir file('src/rest-test/resources')
+    }
 }
 
 
@@ -42,4 +47,8 @@ dependencies {
     integrationTestCompile configurations.testCompile
     integrationTestCompile sourceSets.test.output
     integrationTestRuntime configurations.testRuntime
+    restTestCompile sourceSets.main.output
+    restTestCompile configurations.testCompile
+    restTestCompile sourceSets.test.output
+    restTestTestRuntime configurations.testRuntime
 }

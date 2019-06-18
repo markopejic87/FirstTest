@@ -13,12 +13,12 @@ public class ModifyLocationTest extends BaseApi {
     //append geometry to existing object
     @Test
     public void append_to_custom_location(){
-        RequestSpecification UploadReqSpec = requestSpecBuilders.
+        RequestSpecification uploadReqSpec = requestSpecBuilders.
                 uploadLocationSpecBuilder("MYLAYER3","my_layer_content.zip").
                 build();
 
         given()
-                .spec(UploadReqSpec)
+                .spec(uploadReqSpec)
                 .when()
                 .post(UPLOAD_PATH)
                 .then()
@@ -42,12 +42,12 @@ public class ModifyLocationTest extends BaseApi {
     //update geometry to existing object
     @Test
     public void update_custom_location(){
-        RequestSpecification UploadReqSpec = requestSpecBuilders.
+        RequestSpecification uploadReqSpec = requestSpecBuilders.
                 uploadLocationSpecBuilder("MYLAYER4","my_layer_content.zip").
                 build();
 
         given()
-                .spec(UploadReqSpec)
+                .spec(uploadReqSpec)
                 .when()
                 .post(UPLOAD_PATH)
                 .then()
@@ -87,12 +87,12 @@ public class ModifyLocationTest extends BaseApi {
     //update geometry to existing object
     @Test
     public void update_custom_location_with_incorrect_format(){
-        RequestSpecification UploadReqSpec = requestSpecBuilders.
+        RequestSpecification uploadReqSpec = requestSpecBuilders.
                 uploadLocationSpecBuilder("MYLAYER4","my_layer_content.zip").
                 build();
 
         given()
-                .spec(UploadReqSpec)
+                .spec(uploadReqSpec)
                 .when()
                 .post(UPLOAD_PATH)
                 .then()
