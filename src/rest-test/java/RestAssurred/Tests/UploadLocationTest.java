@@ -32,6 +32,7 @@ public class UploadLocationTest extends BaseApi
     }
 
 
+
     //incorrect location file
     @Test
     public void upload_location_incorrect(){
@@ -59,6 +60,39 @@ public class UploadLocationTest extends BaseApi
                 .multiPart("zipfile", new File("my_layer_content.zip"))
                 .when().post(UPLOAD_PATH)
                 .then().statusCode(401).log().all();
+    }
+
+
+    @Test
+    public void upload_custom_location_no_file(){
+        RequestSpecification reqSpec = requestSpecBuilders
+                .commonAuthorizationSpecBuilder()
+                .setContentType("multipart/form-data")
+                .addQueryParam("layer_id","MYLAYER").
+                build();
+
+        given()
+                .spec(reqSpec)
+                .when()
+                .post(UPLOAD_PATH)
+                .then()
+                .statusCode(400).log().all();
+    }
+
+
+    @Test
+    public void upload_custom_location_incorrect_format(){
+        RequestSpecification reqSpec = requestSpecBuilders
+                .commonAuthorizationSpecBuilder()
+                .setContentType("text/plain")
+                .build();
+
+        given()
+                .spec(reqSpec)
+                .when()
+                .post(UPLOAD_PATH)
+                .then()
+                .statusCode(415).log().all();
     }
 
 
