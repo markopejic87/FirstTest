@@ -39,7 +39,7 @@ public class BaseSeleniumClass  {
     public void setUpDriver(String browserName) {
         switch (browserName.toLowerCase()) {
             case CHROME:
-                System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+                //System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
                 driver = new ChromeDriver();
                 wait = new WebDriverWait(driver, 30);
                 break;
