@@ -14,7 +14,7 @@ public class ModifyLocationTest extends BaseApi {
     @Test
     public void append_to_custom_location(){
         RequestSpecification uploadReqSpec = requestSpecBuilders.
-                uploadLocationSpecBuilder("MYLAYER3","my_layer_content.zip").
+                uploadLocationSpecBuilder("MYLAYER3",correctFile).
                 build();
 
         given()
@@ -25,7 +25,7 @@ public class ModifyLocationTest extends BaseApi {
                 .statusCode(201).log().all();
 
     RequestSpecification modifyReqSpec = requestSpecBuilders.
-            modifyLocationSpecBuilder("MYLAYER3", "my_layer_content_append.zip","append").
+            modifyLocationSpecBuilder("MYLAYER3", appendFile,"append").
             build();
 
 
@@ -43,7 +43,7 @@ public class ModifyLocationTest extends BaseApi {
     @Test
     public void update_custom_location(){
         RequestSpecification uploadReqSpec = requestSpecBuilders.
-                uploadLocationSpecBuilder("MYLAYER4","my_layer_content.zip").
+                uploadLocationSpecBuilder("MYLAYER4",correctFile).
                 build();
 
         given()
@@ -54,7 +54,7 @@ public class ModifyLocationTest extends BaseApi {
                 .statusCode(201).log().all();
 
         RequestSpecification modifyReqSpec = requestSpecBuilders.
-                modifyLocationSpecBuilder("MYLAYER4", "my_layer_content_update.zip","update").
+                modifyLocationSpecBuilder("MYLAYER4", updateFile,"update").
                 build();
 
 
@@ -72,7 +72,7 @@ public class ModifyLocationTest extends BaseApi {
     public void modify_non_existing_location(){
 
         RequestSpecification modifyReqSpec = requestSpecBuilders.
-                modifyLocationSpecBuilder("NonExisting", "my_layer_content_update.zip","append").
+                modifyLocationSpecBuilder("NonExisting", updateFile,"append").
                 build();
 
 
@@ -88,7 +88,7 @@ public class ModifyLocationTest extends BaseApi {
     @Test
     public void update_custom_location_with_incorrect_format(){
         RequestSpecification uploadReqSpec = requestSpecBuilders.
-                uploadLocationSpecBuilder("MYLAYER4","my_layer_content.zip").
+                uploadLocationSpecBuilder("MYLAYER4",correctFile).
                 build();
 
         given()
@@ -99,7 +99,7 @@ public class ModifyLocationTest extends BaseApi {
                 .statusCode(201).log().all();
 
         RequestSpecification modifyReqSpec = requestSpecBuilders.
-                modifyLocationSpecBuilder("MYLAYER4", "incorrect_data.zip","update").
+                modifyLocationSpecBuilder("MYLAYER4", incorrectFile,"update").
                 build();
 
 

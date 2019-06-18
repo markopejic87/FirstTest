@@ -5,6 +5,7 @@ import io.restassured.specification.RequestSpecification;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.InputStream;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.equalTo;
@@ -16,11 +17,13 @@ import static org.hamcrest.Matchers.equalTo;
  */
 public class UploadLocationTest extends BaseApi
 {
+
+
     //Upload custom location with correct data
     @Test
     public void upload_custom_location_correct(){
         RequestSpecification reqSpec = requestSpecBuilders.
-                uploadLocationSpecBuilder("MYLAYER","my_layer_content.zip").
+                uploadLocationSpecBuilder("MYLAYER",correctFile).
                 build();
 
         given()
@@ -38,7 +41,7 @@ public class UploadLocationTest extends BaseApi
     public void upload_location_incorrect(){
 
         RequestSpecification reqSpec = requestSpecBuilders
-                .uploadLocationSpecBuilder("MYLAYER2","incorrect_data.zip")
+                .uploadLocationSpecBuilder("MYLAYER2",incorrectFile)
                 .build();
 
         given()
@@ -53,11 +56,15 @@ public class UploadLocationTest extends BaseApi
     @Test
     public void unauthorized(){
 
+        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+        InputStream is = classloader.getResourceAsStream(correctFile);
+
+
         given()
                 .contentType("multipart/form-data")
                 .queryParam("app_id","VmznfFZdwjN4j0Gzke0F")
                 .queryParam("app_code","incorrect")
-                .multiPart("zipfile", new File("my_layer_content.zip"))
+                .multiPart("zipfile",correctFile,is)
                 .when().post(UPLOAD_PATH)
                 .then().statusCode(401).log().all();
     }

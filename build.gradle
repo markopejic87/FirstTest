@@ -13,7 +13,10 @@ repositories {
 }
 
 sourceSets {
+
     integrationTest {
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
         java.srcDir file('src/integration-test/java')
         resources.srcDir file('src/integration-test/resources')
     }
@@ -34,6 +37,12 @@ task integrationTest(type: Test, dependsOn: jar) {
 }
 check.dependsOn integrationTest
 
+configurations {
+    intTestImplementation.extendsFrom implementation
+    intTestRuntimeOnly.extendsFrom runtimeOnly
+    restTestImplementation.extendsFrom implementation
+    restTestRuntimeOnly.extendsFrom runtimeOnly
+}
 
 dependencies {
 
@@ -41,13 +50,14 @@ dependencies {
     testCompile 'io.rest-assured:rest-assured:3.3.0'
     compile 'io.rest-assured:json-path:3.3.0'
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '2.41.0'
-    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
-    integrationTestCompile sourceSets.main.output
-    integrationTestCompile configurations.testCompile
-    integrationTestCompile sourceSets.test.output
-    integrationTestRuntime configurations.testRuntime
-    restTestCompile sourceSets.main.output
-    restTestCompile configurations.testCompile
-    restTestCompile sourceSets.test.output
+    intTestImplementation 'junit:junit:4.12'
+
+//    integrationTestCompile sourceSets.main.output
+      integrationTestCompile configurations.testCompile
+//    integrationTestCompile sourceSets.test.output
+//    integrationTestRuntime configurations.testRuntime
+//    restTestCompile sourceSets.main.output
+      restTestCompile configurations.testCompile
+//    restTestCompile sourceSets.test.output
 }

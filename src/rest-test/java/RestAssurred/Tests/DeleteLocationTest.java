@@ -14,7 +14,7 @@ public class DeleteLocationTest extends BaseApi {
     @Test
     public void delete_custom_location_correct(){
         RequestSpecification uploadReqSpec = requestSpecBuilders
-                .uploadLocationSpecBuilder("MYLAYER11","my_layer_content.zip")
+                .uploadLocationSpecBuilder("MYLAYER11",correctFile)
                 .build();
 
         given()
@@ -38,7 +38,7 @@ public class DeleteLocationTest extends BaseApi {
     public void method_not_allowed_test(){
 
         RequestSpecification uploadReqSpec = requestSpecBuilders
-                .uploadLocationSpecBuilder("MYLAYER1","my_layer_content.zip")
+                .uploadLocationSpecBuilder("MYLAYER1",correctFile)
                 .build();
 
         given()
