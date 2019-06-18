@@ -10,17 +10,39 @@ import static io.restassured.RestAssured.given;
 
 public class DeleteLocationTest extends BaseApi {
 
-    //Upload custom location with correct data
+    //Delete custom location with correct data
     @Test
-    public void upload_custom_location_correct(){
-        RequestSpecification reqSpec = requestSpecBuilders.
-                uploadLocationSpecBuilder().
-                addQueryParam("layer_id","MYLAYER1").build();
+    public void delete_custom_location_correct(){
+        RequestSpecification uploadReqSpec = requestSpecBuilders
+                .uploadLocationSpecBuilder("MYLAYER","my_layer_content.zip")
+                .build();
 
-        given().spec(reqSpec).multiPart("zipfile", new File("my_layer_content.zip")).log().all().
-                when().post("/upload.json").
-                then().statusCode(201).log().all();
+        given()
+                .spec(uploadReqSpec)
+                .when().post("/upload.json")
+                .then().statusCode(201).log().all();
 
+        RequestSpecification deleteReqSpec = requestSpecBuilders
+                .deleteLocationSpecBuilder("MYLAYER1")
+                .build();
+
+        given()
+                .spec(deleteReqSpec).log().all()
+                .when().get("/delete.json")
+                .then().statusCode(200).log().all();
+
+    }
+
+    //method not allowed - 401
+    @Test
+    public void method_not_allowed_test(){
+
+        RequestSpecification deleteReqSpec = requestSpecBuilders
+                .deleteLocationSpecBuilder("MYLAYER1")
+                .build();
+        given().spec(deleteReqSpec).log().all().queryParam("layer_ids","MYLAYER1").
+                when().delete("/delete.json").
+                then().statusCode(405).log().all();
 
     }
 }
