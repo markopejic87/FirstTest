@@ -50,5 +50,4 @@ dependencies {
     restTestCompile sourceSets.main.output
     restTestCompile configurations.testCompile
     restTestCompile sourceSets.test.output
-    restTestTestRuntime configurations.testRuntime
 }
